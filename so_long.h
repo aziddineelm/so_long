@@ -14,8 +14,8 @@
 # define SO_LONG_H
 
 #include <stddef.h>
-# include <mlx.h>
-# include <stdlib.h>
+#include <mlx.h>
+#include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stddef.h>
@@ -33,16 +33,15 @@ typedef struct s_data
 }			t_data;
 
 char	*get_next_line(int fd);
-int	ft_contain(char *str, int c);
+int		ft_contain(char *str, int c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s);
-int	ft_strlen(char *s);
-int	ft_strcmp(const char *s1, const char *s2);
-int	name_check(char *map);
-int	check_map(char *map);
-int	close_window(int keycode, t_data *vars);
-int	close_x_window(void *ptr);
+int		ft_strlen(char *s);
+int		ft_strcmp(const char *s1, const char *s2);
+int		name_check(char *map);
+int		close_window(int keycode, t_data *vars);
+int		close_x_window(void *ptr);
 void	so_long(char *map);
-char	read_map(char *map);
+char	**read_map(char *map_file);
 
 #endif

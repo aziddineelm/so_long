@@ -17,7 +17,7 @@ int	close_window(int keycode, t_data *vars)
 	if (keycode == 65307)
 	{
 		mlx_destroy_window(vars->mlx, vars->window);
-		exit(0);
+		exit(1);
 	}
 	return (0);
 }
@@ -25,5 +25,5 @@ int	close_window(int keycode, t_data *vars)
 int	close_x_window(void *ptr)
 {
 	(void)ptr;
-	exit(0);
+	exit(1);
 }

@@ -6,19 +6,25 @@
 int	main(int ac, char **av)
 {
 	char	*map;
+	char	**map_win;
+
+	int i = 0;
+
 	if (ac == 2)
 	{
 		map = av[1];
 		t_data	vars;
-		char	**map_win;
-
-		map_win = NULL;
-		if (check_map(map))
+		if (name_check(map))
 		{
-			perror("Error\nMap file extension is not .ber\n");
+			printf("Error\nMap file extension is not .ber\n");
 			exit(1);
 		}
-		// map_win = read_map(map);
+		map_win = read_map(map);
+		while (map_win)
+		{
+			printf("%s", map_win[i]);
+			i++;
+		}
 		vars.mlx = mlx_init();
 		vars.window = mlx_new_window(vars.mlx, 740, 480, "so_long");
 		mlx_key_hook(vars.window, close_window, &vars);

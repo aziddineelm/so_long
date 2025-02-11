@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int	name_check(char *map)
 {
@@ -22,16 +25,30 @@ int	name_check(char *map)
 	return (0);
 }
 
-int	check_map(char *map)
+char	**read_map(char *map_file)
 {
-	if (name_check(map))
-		return (1);
-	
-	return (0);
-}
-char	read_map(char *map)
-{
+	int		fd;
 	char	*line;
+	char	**map;
+	int		i;
+	t_data	data;
 
-
+	fd = open(map_file, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
+	map = (char **)malloc(sizeof(char *) * 20);
+	if (!map)
+		return (NULL);
+	i = 0;
+	line = get_next_line(fd);
+	while(line)
+	{
+		map[i] = line;
+		free(line);
+		i++;
+		line = get_next_line(fd);
+	}
+	map[i] = NULL;
+	close(fd);
+	return (map);
 }
