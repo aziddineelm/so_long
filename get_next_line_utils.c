@@ -6,11 +6,21 @@
 /*   By: ael-mans <ael-mans@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 15:44:21 by ael-mans          #+#    #+#             */
-/*   Updated: 2025/01/01 17:47:47 by ael-mans         ###   ########.fr       */
+/*   Updated: 2025/02/10 21:18:35 by ael-mans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+}
 
 int	ft_strlen(char *s)
 {
