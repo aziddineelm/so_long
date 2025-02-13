@@ -43,7 +43,6 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		name_check(char *line);
 int		close_window(int keycode, t_data *vars);
 int		close_x_window(void *ptr);
-
 char	**read_map(char *map_file, int *rows);
 void	ft_putstr(char *str);
 
