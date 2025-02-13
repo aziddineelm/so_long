@@ -28,10 +28,10 @@ typedef struct s_data
 {
 	void	*mlx;
 	void	*window;
-	int		rows;
-	char	*line;
-	char	**map_win;
+	char	*filename;
+	char	**map;
 	int		coloms;
+	int		rows;
 }			t_data;
 
 char	*get_next_line(int fd);
@@ -40,10 +40,10 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s);
 int		ft_strlen(char *s);
 int		ft_strcmp(const char *s1, const char *s2);
-int		name_check(char *line);
+int		name_check(char *filename);
 int		close_window(int keycode, t_data *vars);
 int		close_x_window(void *ptr);
-char	**read_map(char *map_file, int *rows);
+char	**read_map(t_data *data);
 void	ft_putstr(char *str);
 
 #endif

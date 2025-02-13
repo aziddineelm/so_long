@@ -40,20 +40,19 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
-	if (ac == 2)
-	{
-		data.line = av[1];
-		if (!name_check(data.line))
-			return (ft_putstr("Error!\nPlease Entre a valid map\n"), 1);
-		data.map_win = read_map(data.line, &data.rows);
-		if (!data.map_win)
-			return (0);
-		print_map(data.map_win);
-		data.mlx = mlx_init();
-		data.window = mlx_new_window(data.mlx, 740, 480, "so_long");
-		mlx_key_hook(data.window, close_window, &data);
-		mlx_hook(data.window, 17, 0, close_x_window, 0);
-		mlx_loop(data.mlx);
-	}
+	if (ac != 2)
+		return (1);
+	data.filename = av[1];
+	if (!name_check(data.filename))
+		return (ft_putstr("Error!\nPlease Entre a valid map\n"), 1);
+	data.map = read_map(&data);
+	if (!data.map)
+		return (1);
+	print_map(data.map);
+	data.mlx = mlx_init();
+	data.window = mlx_new_window(data.mlx, 740, 480, "so_long");
+	mlx_key_hook(data.window, close_window, &data);
+	mlx_hook(data.window, 17, 0, close_x_window, 0);
+	mlx_loop(data.mlx);
 	return (0);
 }

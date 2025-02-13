@@ -33,27 +33,31 @@ int	rows_calc(char *map_file)
 	return (i);
 }
 
-char	**read_map(char *map_file, int *rows)
+// int	coloms_size(t_data data)
+// {
+//
+// }
+
+char	**read_map(t_data *data)
 {
 	int		fd;
 	char	*line;
-	char	**map;
 	int		i;
 
-	fd = open(map_file, O_RDONLY);
+	fd = open(data->filename, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	*rows = rows_calc(map_file);
-	map = (char **)malloc(sizeof(char *) * *rows + 1);
-	if (!map)
+	data->rows = rows_calc(data->filename);
+	data->map = (char **)malloc(sizeof(char *) * (data->rows) + 1);
+	if (!data->map)
 		return (NULL);
 	i = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
-		map[i++] = line;
+		data->map[i++] = line;
 		line = get_next_line(fd);
 	}
-	map[i] = NULL;
-	return (close(fd), map);
+	data->map[i] = NULL;
+	return (close(fd), data->map);
 }

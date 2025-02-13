@@ -12,12 +12,12 @@
 
 #include "so_long.h"
 
-int	name_check(char *map)
+int	name_check(char *filename)
 {
 	size_t	len;
 
-	len = ft_strlen(map);
-	if (ft_strcmp(map + len - 4, ".ber") != 0)
+	len = ft_strlen(filename);
+	if (ft_strcmp(filename + len - 4, ".ber") != 0)
 		return (0);
 	if (len < 5)
 	{
@@ -26,3 +26,9 @@ int	name_check(char *map)
 	}
 	return (1);
 }
+
+// int	is_rectangle(int rows, int coloms)
+// {
+//
+// 	return (0);
+// }
