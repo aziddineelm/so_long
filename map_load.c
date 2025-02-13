@@ -6,12 +6,11 @@
 /*   By: ael-mans <ael-mans@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:27:53 by ael-mans          #+#    #+#             */
-/*   Updated: 2025/02/13 18:01:08 by ael-mans         ###   ########.fr       */
+/*   Updated: 2025/02/13 18:02:48 by ael-mans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
 int	rows_calc(char *map_file)
 {
