@@ -6,7 +6,7 @@
 /*   By: ael-mans <ael-mans@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:52:31 by ael-mans          #+#    #+#             */
-/*   Updated: 2025/02/13 18:02:44 by ael-mans         ###   ########.fr       */
+/*   Updated: 2025/02/15 19:18:27 by ael-mans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_data
 	int		rows;
 }			t_data;
 
+void	print_map(char **map);
 char	*get_next_line(int fd);
 int		ft_contain(char *str, int c);
 char	*ft_strjoin(char *s1, char *s2);
@@ -45,5 +46,6 @@ int		close_window(int keycode, t_data *vars);
 int		close_x_window(void *ptr);
 char	**read_map(t_data *data);
 void	ft_putstr(char *str);
+int	is_rectangle(t_data data);
 
 #endif
