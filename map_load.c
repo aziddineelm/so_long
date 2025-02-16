@@ -34,12 +34,6 @@ int	rows_calc(char *map_file)
 	return (i);
 }
 
-// int	coloms_size(t_data data)
-// {
-// 	data
-// 	return (i);
-// }
-
 char	**read_map(t_data *data)
 {
 	int		fd;

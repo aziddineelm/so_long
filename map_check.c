@@ -32,12 +32,12 @@ int	is_rectangle(t_data data)
 	int	i;
 
 	i = 0;
-	while(data.map)
+	while (data.map[i])
 	{
-		if (ft_strlen(data.map[i]) != data.coloms)
+		if ((ft_strlen(data.map[i]) - 1) != data.coloms)
 		{
-			ft_putstr("Error\nmap is nor rectangle!");
-			exit (1);
+			ft_putstr("Error\nmap is not rectangle!");
+			exit(1);
 		}
 		i++;
 	}

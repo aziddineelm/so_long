@@ -26,6 +26,11 @@ int	main(int ac, char **av)
 	data.map = read_map(&data);
 	if (!data.map)
 		return (1);
+	if (!data.map[0])
+	{
+		ft_putstr("Error\nEmpty map");
+		return 0;
+	}
 	print_map(data.map);
 	is_rectangle(data);
 	data.mlx = mlx_init();
