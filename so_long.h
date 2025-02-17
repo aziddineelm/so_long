@@ -32,6 +32,9 @@ typedef struct s_data
 	char	**map;
 	int		coloms;
 	int		rows;
+	int		collectible;
+	int		exit;
+	int		player;
 }			t_data;
 
 void	print_map(char **map);
@@ -46,6 +49,8 @@ int		close_window(int keycode, t_data *vars);
 int		close_x_window(void *ptr);
 char	**read_map(t_data *data);
 void	ft_putstr(char *str);
-int	is_rectangle(t_data data);
+int	is_rectangle(t_data *data);
+int	surrounded_by_walls(t_data *data);
+int	has_require_element(t_data *data);
 
 #endif

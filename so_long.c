@@ -21,18 +21,25 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (1);
 	data.filename = av[1];
-	if (!name_check(data.filename))
-		return (ft_putstr("Error!\nPlease Entre a valid map\n"), 1);
+	if (name_check(data.filename))
+		return (ft_putstr("Error!\nPlease Entre a valid map with \".ber\"\n"), 1);
 	data.map = read_map(&data);
 	if (!data.map)
 		return (1);
-	if (!data.map[0])
+	if (is_rectangle((&data)))
 	{
-		ft_putstr("Error\nEmpty map");
-		return 0;
+		ft_putstr("Error\nmap is not rectangle!");
+		return (1);
 	}
-	print_map(data.map);
-	is_rectangle(data);
+	if(surrounded_by_walls(&data))
+	{
+		ft_putstr("Error\nMap not surrounded by walls!!");
+		return (1);
+	}
+	if (has_require_element(&data))
+	{
+		return (1);
+	}
 	data.mlx = mlx_init();
 	data.window = mlx_new_window(data.mlx, 740, 480, "so_long");
 	mlx_key_hook(data.window, close_window, &data);
