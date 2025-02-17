@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 int	rows_calc(char *map_file)
 {
@@ -33,31 +34,45 @@ int	rows_calc(char *map_file)
 	return (i);
 }
 
+char	**read_map_lines(int fd, t_data *data, int total_rows)
+{
+	char	**map;
+	char	*line;
+	int		i;
+
+	map = malloc(sizeof(char *) * (total_rows + 1));
+	if (!map)
+		return (NULL);
+	i = 0;
+	line = get_next_line(fd);
+	if (!line)
+	{
+		ft_putstr("Error\nMap is Empty");
+		free(map);
+		return (NULL);
+	}
+	data->columns = ft_strlen(line);
+	if (data->columns > 0 && line[data->columns - 1] == '\n')
+		data->columns--;
+	while (line)
+	{
+		map[i++] = line;
+		line = get_next_line(fd);
+	}
+	map[i] = NULL;
+	return (map);
+}
+
 char	**read_map(t_data *data)
 {
 	int		fd;
-	char	*line;
-	int		i;
+	char	**map;
 
 	fd = open(data->filename, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
 	data->rows = rows_calc(data->filename);
-	data->map = (char **)malloc(sizeof(char *) * (data->rows + 1));
-	if (!data->map)
-		return (close(fd), NULL);
-	i = 0;
-	line = get_next_line(fd);
-	if (!line)
-		return (ft_putstr("Error\nMap is empty"), \
-		free(data->map), close(fd), NULL);
-	while (line)
-	{
-		if (data->columns == 0)
-			data->columns = ft_strlen(line) - (line[ft_strlen(line) - 1] == '\n');
-		data->map[i++] = line;
-		line = get_next_line(fd);
-	}
-	data->map[i] = NULL;
-	return (free(line), close(fd), data->map);
+	map = read_map_lines(fd, data, data->rows);
+	close(fd);
+	return (map);
 }

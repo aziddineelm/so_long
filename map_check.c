@@ -89,7 +89,8 @@ int	count_elements(t_data *data)
 			else if (data->map[i][j] != '0' && data->map[i][j] != '1'
 				&& data->map[i][j] != 'X')
 				return (ft_putstr("Error\nMap contains \
-				invalid characters!"), 1);
+				invalid characters!"),
+						1);
 		}
 	}
 	return (0);
