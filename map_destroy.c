@@ -40,6 +40,12 @@ int	close_window(int keycode, t_data *data)
 
 int	close_x_window(void *ptr)
 {
-	(void)ptr;
+	t_data	*data;
+
+	data = (t_data *)ptr;
+	mlx_destroy_window(data->mlx, data->window);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
+	free_map(data->map, data->rows);
 	exit(0);
 }
