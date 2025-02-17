@@ -6,7 +6,7 @@
 /*   By: ael-mans <ael-mans@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:27:53 by ael-mans          #+#    #+#             */
-/*   Updated: 2025/02/15 19:27:46 by ael-mans         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:34:47 by ael-mans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	rows_calc(char *map_file)
 	line = get_next_line(fd);
 	while (line)
 	{
-		line = get_next_line(fd);
-		free(line);
 		i++;
+		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (i);
@@ -44,12 +44,14 @@ char	**read_map(t_data *data)
 	if (fd < 0)
 		return (NULL);
 	data->rows = rows_calc(data->filename);
-	data->map = (char **)malloc(sizeof(char *) * (data->rows) + 1);
+	data->map = (char **)malloc(sizeof(char *) * (data->rows + 1));
 	if (!data->map)
 		return (NULL);
 	i = 0;
 	line = get_next_line(fd);
-	data->coloms = (ft_strlen(line) - 1);
+	data->columns = (ft_strlen(line));
+	if (data->columns > 0 && line[data->columns - 1] == '\n')
+		data->columns--;
 	while (line)
 	{
 		data->map[i++] = line;

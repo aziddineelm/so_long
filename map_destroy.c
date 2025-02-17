@@ -12,12 +12,25 @@
 
 #include "so_long.h"
 
+void	free_map(char **map, int rows)
+{
+	int	i;
+
+	i = 0;
+	while (i < rows)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
 int	close_window(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 	{
 		mlx_destroy_window(data->mlx, data->window);
-		exit(1);
+		exit(0);
 	}
 	return (0);
 }
@@ -25,5 +38,5 @@ int	close_window(int keycode, t_data *data)
 int	close_x_window(void *ptr)
 {
 	(void)ptr;
-	exit(1);
+	exit(0);
 }

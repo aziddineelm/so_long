@@ -22,7 +22,6 @@
 # include <unistd.h>
 
 # define BUFFER_SIZE 10
-# define COLLECTIBLE 1
 
 typedef struct s_data
 {
@@ -30,11 +29,13 @@ typedef struct s_data
 	void	*window;
 	char	*filename;
 	char	**map;
-	int		coloms;
+	int		columns;
 	int		rows;
 	int		collectible;
 	int		exit;
 	int		player;
+	int		player_x;
+	int		player_y;
 }			t_data;
 
 void	print_map(char **map);
@@ -49,8 +50,10 @@ int		close_window(int keycode, t_data *vars);
 int		close_x_window(void *ptr);
 char	**read_map(t_data *data);
 void	ft_putstr(char *str);
-int	is_rectangle(t_data *data);
-int	surrounded_by_walls(t_data *data);
-int	has_require_element(t_data *data);
+int		is_rectangle(t_data *data);
+int		surrounded_by_walls(t_data *data);
+int		has_required_element(t_data *data);
+int		has_valid_path(t_data *data);
+void	free_map(char **map, int rows);
 
 #endif
