@@ -56,15 +56,15 @@ int	reachable(char **map, int rows, int columns)
 	return (0);
 }
 
-void	flood_fill(char **map, int x, int y, int rows, int columns)
+void	flood_fill(char **map, int x, int y)
 {
-	if (x < 0 || x >= rows || y < 0 || y >= columns || map[x][y] == '1' || map[x][y] == 'V')
-		return;
+	if (x < 0 || y < 0 || !map[x] || map[x][y] == '1' || map[x][y] == 'V')
+		return ;
 	map[x][y] = 'V';
-	flood_fill(map, x + 1, y, rows, columns);
-	flood_fill(map, x - 1, y, rows, columns);
-	flood_fill(map, x, y + 1, rows, columns);
-	flood_fill(map, x, y - 1, rows, columns);
+	flood_fill(map, x + 1, y);
+	flood_fill(map, x - 1, y);
+	flood_fill(map, x, y + 1);
+	flood_fill(map, x, y - 1);
 }
 
 char	**map_copy(char **map, int rows, int columns)
@@ -76,8 +76,8 @@ char	**map_copy(char **map, int rows, int columns)
 	new_map = (char **)malloc(sizeof(char *) * rows);
 	if (!new_map)
 		return (NULL);
-	i = 0;
-	while (i < rows)
+	i = -1;
+	while (++i < rows)
 	{
 		new_map[i] = (char *)malloc(sizeof(char) * (columns + 1));
 		if (!new_map[i])
@@ -87,14 +87,10 @@ char	**map_copy(char **map, int rows, int columns)
 			free(new_map);
 			return (NULL);
 		}
-		j = 0;
-		while (j < columns)
-		{
+		j = -1;
+		while (++j < columns)
 			new_map[i][j] = map[i][j];
-			j++;
-		}
 		new_map[i][j] = '\0';
-		i++;
 	}
 	return (new_map);
 }
@@ -107,7 +103,7 @@ int	has_valid_path(t_data *data)
 	copy = map_copy(data->map, data->rows, data->columns);
 	if (!copy)
 		return (1);
-	flood_fill(copy, data->player_x, data->player_y, data->rows, data->columns);
+	flood_fill(copy, data->player_x, data->player_y);
 	if (reachable(copy, data->rows, data->columns))
 	{
 		ft_putstr("Error\nNo valid path!\n");

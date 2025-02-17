@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
 int	rows_calc(char *map_file)
 {
@@ -46,17 +45,19 @@ char	**read_map(t_data *data)
 	data->rows = rows_calc(data->filename);
 	data->map = (char **)malloc(sizeof(char *) * (data->rows + 1));
 	if (!data->map)
-		return (NULL);
+		return (close(fd), NULL);
 	i = 0;
 	line = get_next_line(fd);
-	data->columns = (ft_strlen(line));
-	if (data->columns > 0 && line[data->columns - 1] == '\n')
-		data->columns--;
+	if (!line)
+		return (ft_putstr("Error\nMap is empty"), \
+		free(data->map), close(fd), NULL);
 	while (line)
 	{
+		if (data->columns == 0)
+			data->columns = ft_strlen(line) - (line[ft_strlen(line) - 1] == '\n');
 		data->map[i++] = line;
 		line = get_next_line(fd);
 	}
 	data->map[i] = NULL;
-	return (close(fd), data->map);
+	return (free(line), close(fd), data->map);
 }

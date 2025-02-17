@@ -30,6 +30,9 @@ int	close_window(int keycode, t_data *data)
 	if (keycode == 65307)
 	{
 		mlx_destroy_window(data->mlx, data->window);
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+		free_map(data->map, data->rows);
 		exit(0);
 	}
 	return (0);

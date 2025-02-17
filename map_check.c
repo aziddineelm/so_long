@@ -74,11 +74,11 @@ int	count_elements(t_data *data)
 	data->collectible = 0;
 	data->player = 0;
 	data->exit = 0;
-	i = 0;
-	while (i < data->rows)
+	i = -1;
+	while (++i < data->rows)
 	{
-		j = 0;
-		while (j < data->columns)
+		j = -1;
+		while (++j < data->columns)
 		{
 			if (data->map[i][j] == 'C')
 				data->collectible++;
@@ -86,14 +86,11 @@ int	count_elements(t_data *data)
 				data->player++;
 			else if (data->map[i][j] == 'E')
 				data->exit++;
-			else if (data->map[i][j] != '0' && data->map[i][j] != '1' && data->map[i][j] != 'X')
-			{
-				ft_putstr("Error\nMap contains invalid characters!");
-				return (1);
-			}
-			j++;
+			else if (data->map[i][j] != '0' && data->map[i][j] != '1'
+				&& data->map[i][j] != 'X')
+				return (ft_putstr("Error\nMap contains \
+				invalid characters!"), 1);
 		}
-		i++;
 	}
 	return (0);
 }
