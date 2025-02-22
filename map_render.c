@@ -6,7 +6,7 @@
 /*   By: ael-mans <ael-mans@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 10:14:38 by ael-mans          #+#    #+#             */
-/*   Updated: 2025/02/22 11:05:24 by ael-mans         ###   ########.fr       */
+/*   Updated: 2025/02/22 11:10:43 by ael-mans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 void	load_image(t_data *data)
 {
-	data->player_img = mlx_xpm_file_to_image(data->mlx, "./player.xpm", &data->width, &data->height);
-	data->coin_img = mlx_xpm_file_to_image(data->mlx, "./coin.xpm", &data->width, &data->height);
-	data->enemy_img = mlx_xpm_file_to_image(data->mlx, "./enemy.xpm", &data->width, &data->height);
-	data->wall_img = mlx_xpm_file_to_image(data->mlx, "./wall.xpm", &data->width, &data->height);
-	data->floor_img = mlx_xpm_file_to_image(data->mlx, "./floor.xpm", &data->width, &data->height);
-	data->exit_img = mlx_xpm_file_to_image(data->mlx, "./exit.xpm", &data->width, &data->height);
+	data->player_img = mlx_xpm_file_to_image(data->mlx, "sprites/player.xpm", &data->width, &data->height);
+	data->coin_img = mlx_xpm_file_to_image(data->mlx, "sprites/coin.xpm", &data->width, &data->height);
+	data->enemy_img = mlx_xpm_file_to_image(data->mlx, "sprites/enemy.xpm", &data->width, &data->height);
+	data->wall_img = mlx_xpm_file_to_image(data->mlx, "sprites/wall.xpm", &data->width, &data->height);
+	data->floor_img = mlx_xpm_file_to_image(data->mlx, "sprites/floor.xpm", &data->width, &data->height);
+	data->exit_img = mlx_xpm_file_to_image(data->mlx, "sprites/exit.xpm", &data->width, &data->height);
 	if (!data->wall_img || !data->player_img || !data->coin_img || !data->exit_img || !data->floor_img || !data->enemy_img)
         free_error("Error loading textures\n", data);
 }
