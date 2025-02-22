@@ -18,10 +18,7 @@ int	name_check(char *filename)
 
 	len = ft_strlen(filename);
 	if (len < 5)
-	{
-		ft_putstr("Error!\nPlease Enter at least 1 character with \".ber\"");
-		return (1);
-	}
+		exit_error("Error!\nPlease Enter at least 1 character with \".ber\"");
 	if (ft_strcmp(filename + len - 4, ".ber") != 0)
 		return (1);
 	return (0);
@@ -88,9 +85,7 @@ int	count_elements(t_data *data)
 				data->exit++;
 			else if (data->map[i][j] != '0' && data->map[i][j] != '1'
 				&& data->map[i][j] != 'X')
-				return (ft_putstr("Error\nMap contains \
-				invalid characters!"),
-						1);
+				exit_error("Error\nMap contains invalid characters!");
 		}
 	}
 	return (0);
@@ -101,9 +96,6 @@ int	has_required_element(t_data *data)
 	if (count_elements(data))
 		return (1);
 	if (data->exit != 1 || data->player != 1 || data->collectible < 1)
-	{
-		ft_putstr("Error\nInvalid element count");
-		return (1);
-	}
+		exit_error("Error\nInvalid element count");
 	return (0);
 }

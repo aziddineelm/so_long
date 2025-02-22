@@ -24,14 +24,15 @@ void	ft_putstr(char *str)
 	}
 }
 
-void	print_map(char **map)
+void	exit_error(char *msg)
 {
-	int	i;
+	ft_putstr(msg);
+	exit(1);
+}
 
-	i = 0;
-	while (map[i])
-	{
-		printf("%s", map[i]);
-		i++;
-	}
+void	free_error(char *msg, t_data *data)
+{
+	if (data->map)
+		free_map(data->map, data->rows);
+	exit_error(msg);
 }

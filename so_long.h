@@ -6,7 +6,7 @@
 /*   By: ael-mans <ael-mans@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:52:31 by ael-mans          #+#    #+#             */
-/*   Updated: 2025/02/15 19:18:27 by ael-mans         ###   ########.fr       */
+/*   Updated: 2025/02/22 10:58:29 by ael-mans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
-# include <stddef.h>
 # include <unistd.h>
 
 # define BUFFER_SIZE 10
@@ -36,6 +35,14 @@ typedef struct s_data
 	int		player;
 	int		player_x;
 	int		player_y;
+	int		width;
+	int		height;
+	void	*player_img;
+	void	*floor_img;
+	void	*coin_img;
+	void	*wall_img;
+	void	*enemy_img;
+	void	*exit_img;
 }			t_data;
 
 void	print_map(char **map);
@@ -55,5 +62,9 @@ int		surrounded_by_walls(t_data *data);
 int		has_required_element(t_data *data);
 int		has_valid_path(t_data *data);
 void	free_map(char **map, int rows);
+void	exit_error(char *msg);
+void	free_error(char *msg, t_data *data);
+void	rendre_image(t_data *data);
+void	load_image(t_data *data);
 
 #endif

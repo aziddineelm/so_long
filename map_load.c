@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
 int	rows_calc(char *map_file)
 {
@@ -47,9 +46,9 @@ char	**read_map_lines(int fd, t_data *data, int total_rows)
 	line = get_next_line(fd);
 	if (!line)
 	{
-		ft_putstr("Error\nMap is Empty");
 		free(map);
-		return (NULL);
+		close(fd);
+		exit_error("Error\nMap is Empty");
 	}
 	data->columns = ft_strlen(line);
 	if (data->columns > 0 && line[data->columns - 1] == '\n')
