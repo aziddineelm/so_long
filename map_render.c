@@ -28,7 +28,10 @@ void	load_image(t_data *data)
 			&data->width, &data->height);
 	if (!data->wall_img || !data->player_img || !data->coin_img
 		|| !data->exit_img || !data->floor_img || !data->enemy_img)
+	{
+
 		free_error("Error loading textures\n", data);
+	}
 }
 
 void	render_image(t_data *data)
