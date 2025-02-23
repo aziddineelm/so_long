@@ -36,5 +36,3 @@ void	free_error(char *msg, t_data *data)
 		free_map(data->map, data->rows);
 	exit_error(msg);
 }
-
-

@@ -41,12 +41,13 @@ int	main(int ac, char **av)
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		free_error("Error\nMLX initialization failed\n", &data);
-	data.window = mlx_new_window(data.mlx, data.columns * 32, data.rows * 32, "so_long");
+	data.window = mlx_new_window(data.mlx, data.columns * 32, data.rows * 32,
+			"so_long");
 	data.width = 0;
 	data.height = 0;
 	load_image(&data);
 	render_image(&data);
-	mlx_hook(data.window, 2, 1L<<0, movement, &data);
+	mlx_hook(data.window, 2, 1L << 0, movement, &data);
 	mlx_hook(data.window, 17, 0, close_x_window, &data);
 	mlx_loop(data.mlx);
 	return (0);

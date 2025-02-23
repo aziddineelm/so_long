@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
 void	free_map(char **map, int rows)
 {
@@ -28,7 +27,6 @@ void	free_map(char **map, int rows)
 
 int	close_window(int keycode, t_data *data)
 {
-	printf("%d\n", keycode);
 	if (keycode == 65307)
 	{
 		mlx_destroy_window(data->mlx, data->window);
