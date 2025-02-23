@@ -46,8 +46,7 @@ int	main(int ac, char **av)
 	data.height = 0;
 	load_image(&data);
 	render_image(&data);
-	mlx_key_hook(data.window, movement, &data);
-	mlx_key_hook(data.window, close_window, &data);
+	mlx_hook(data.window, 2, 1L<<0, movement, &data);
 	mlx_hook(data.window, 17, 0, close_x_window, &data);
 	mlx_loop(data.mlx);
 	return (0);

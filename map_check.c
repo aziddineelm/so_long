@@ -85,7 +85,7 @@ int	count_elements(t_data *data)
 				data->exit++;
 			else if (data->map[i][j] != '0' && data->map[i][j] != '1'
 				&& data->map[i][j] != 'X')
-				exit_error("Error\nMap contains invalid characters!");
+				free_error("Error\nMap contains invalid characters!", data);
 		}
 	}
 	return (0);

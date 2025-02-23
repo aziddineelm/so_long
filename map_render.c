@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
 void	load_image(t_data *data)
 {
@@ -22,7 +21,7 @@ void	load_image(t_data *data)
 	data->floor_img = mlx_xpm_file_to_image(data->mlx, "sprites/floor.xpm", &data->width, &data->height);
 	data->exit_img = mlx_xpm_file_to_image(data->mlx, "sprites/exit.xpm", &data->width, &data->height);
 	if (!data->wall_img || !data->player_img || !data->coin_img || !data->exit_img || !data->floor_img || !data->enemy_img)
-        free_error("Error loading textures\n", data);
+		free_error("Error loading textures\n", data);
 }
 
 void    render_image(t_data *data)
@@ -52,4 +51,5 @@ void    render_image(t_data *data)
 		}
 		y++;
 	}
+	mlx_put_image_to_window(data->mlx, data->window, data->player_img, data->player_y * 32, data->player_x * 32);
 }
