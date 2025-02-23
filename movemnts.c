@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   movemnts.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-mans <ael-mans@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/15 18:05:47 by ael-mans          #+#    #+#             */
-/*   Updated: 2025/02/22 12:51:42 by ael-mans         ###   ########.fr       */
+/*   Created: 2025/02/22 12:06:49 by ael-mans          #+#    #+#             */
+/*   Updated: 2025/02/22 13:07:03 by ael-mans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_putstr(char *str)
+int	movement(int keycode, t_data *data)
 {
-	int	i;
+	if (keycode == 65307)
+		close_window(keycode, data);
+	if (keycode == 65362)
+		data->player_y--;
+	else if (keycode == 65361)
+		data->player_y++;
+	else if (keycode == 65363)
+		data->player_x--;
+	else if (keycode == 65364)
+		data->player_x++;
 
-	i = 0;
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
+	render_image(data);
+	return (0);
 }
-
-void	exit_error(char *msg)
-{
-	ft_putstr(msg);
-	exit(1);
-}
-
-void	free_error(char *msg, t_data *data)
-{
-	if (data->map)
-		free_map(data->map, data->rows);
-	exit_error(msg);
-}
-
-

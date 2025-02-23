@@ -6,7 +6,7 @@
 /*   By: ael-mans <ael-mans@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 10:14:38 by ael-mans          #+#    #+#             */
-/*   Updated: 2025/02/22 11:10:43 by ael-mans         ###   ########.fr       */
+/*   Updated: 2025/02/22 11:21:10 by ael-mans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	load_image(t_data *data)
         free_error("Error loading textures\n", data);
 }
 
-void	rendre_image(t_data *data)
+void    render_image(t_data *data)
 {
-	int	x;
-	int	y;
+	int    x;
+	int    y;
 
 	y = 0;
 	while (y < data->rows)
@@ -37,17 +37,17 @@ void	rendre_image(t_data *data)
 		while (x < data->columns)
 		{
 			if (data->map[y][x] == '1')
-				mlx_put_image_to_window(data->mlx, data->window, data->wall_img, data->width * 32, data->height * 32);
+				mlx_put_image_to_window(data->mlx, data->window, data->wall_img, x * 32, y * 32);
 			else if (data->map[y][x] == '0')
-				mlx_put_image_to_window(data->mlx, data->window, data->floor_img, data->width * 32, data->height * 32);
+				mlx_put_image_to_window(data->mlx, data->window, data->floor_img, x * 32, y * 32);
 			else if (data->map[y][x] == 'P')
-				mlx_put_image_to_window(data->mlx, data->window, data->player_img, data->width * 32, data->height * 32);
+				mlx_put_image_to_window(data->mlx, data->window, data->player_img, x * 32, y * 32);
 			else if (data->map[y][x] == 'C')
-				mlx_put_image_to_window(data->mlx, data->window, data->coin_img, data->width * 32, data->height * 32);
+				mlx_put_image_to_window(data->mlx, data->window, data->coin_img, x * 32, y * 32);
 			else if (data->map[y][x] == 'E')
-				mlx_put_image_to_window(data->mlx, data->window, data->exit_img, data->width * 32, data->height * 32);
+				mlx_put_image_to_window(data->mlx, data->window, data->exit_img, x * 32, y * 32);
 			else if (data->map[y][x] == 'X')
-				mlx_put_image_to_window(data->mlx, data->window, data->enemy_img, data->width * 32, data->height * 32);
+				mlx_put_image_to_window(data->mlx, data->window, data->enemy_img, x * 32, y * 32);
 			x++;
 		}
 		y++;
