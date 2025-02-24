@@ -6,8 +6,7 @@
 /*   By: ael-mans <ael-mans@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:52:31 by ael-mans          #+#    #+#             */
-/*   Updated: 2025/02/22 13:03:07 by ael-mans         ###   ########.fr       */
-/*                                                                            */
+/*   Updated: 2025/02/22 13:03:07 by ael-mans         ###   ########.fr       */ /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
@@ -67,5 +66,6 @@ void	free_error(char *msg, t_data *data);
 void	render_image(t_data *data);
 void	load_image(t_data *data);
 int		movement(int keycode, t_data *data);
+void	free_image(t_data *data);
 
 #endif

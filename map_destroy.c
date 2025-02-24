@@ -11,13 +11,16 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <mlx.h>
 
 void	free_map(char **map, int rows)
 {
 	int	i;
 
 	i = 0;
-	while (i < rows)
+	if (!map)
+		return ;
+	while (i < rows && map[i])
 	{
 		free(map[i]);
 		i++;
@@ -25,10 +28,27 @@ void	free_map(char **map, int rows)
 	free(map);
 }
 
+void	free_image(t_data *data)
+{
+	if (data->coin_img)
+		mlx_destroy_image(data->mlx, data->coin_img);
+	if (data->exit_img)
+		mlx_destroy_image(data->mlx, data->exit_img);
+	if (data->wall_img)
+		mlx_destroy_image(data->mlx, data->wall_img);
+	if (data->enemy_img)
+		mlx_destroy_image(data->mlx, data->enemy_img);
+	if (data->floor_img)
+		mlx_destroy_image(data->mlx, data->floor_img);
+	if (data->player_img)
+		mlx_destroy_image(data->mlx, data->player_img);
+}
+
 int	close_window(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 	{
+		free_image(data);
 		mlx_destroy_window(data->mlx, data->window);
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);

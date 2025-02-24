@@ -29,7 +29,7 @@ void	load_image(t_data *data)
 	if (!data->wall_img || !data->player_img || !data->coin_img
 		|| !data->exit_img || !data->floor_img || !data->enemy_img)
 	{
-
+		free_image(data);
 		free_error("Error loading textures\n", data);
 	}
 }
