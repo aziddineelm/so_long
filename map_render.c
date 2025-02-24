@@ -18,7 +18,7 @@ void	load_image(t_data *data)
 			&data->width, &data->height);
 	data->coin_img = mlx_xpm_file_to_image(data->mlx, "sprites/coin.xpm",
 			&data->width, &data->height);
-	data->enemy_img = mlx_xpm_file_to_image(data->mlx, "sprites/enemy.xpm",
+	data->enemy_img = mlx_xpm_file_to_image(data->mlx, "sprites/enemyy.xpm",
 			&data->width, &data->height);
 	data->wall_img = mlx_xpm_file_to_image(data->mlx, "sprites/wall.xpm",
 			&data->width, &data->height);
@@ -29,8 +29,8 @@ void	load_image(t_data *data)
 	if (!data->wall_img || !data->player_img || !data->coin_img
 		|| !data->exit_img || !data->floor_img || !data->enemy_img)
 	{
-		free_image(data);
-		free_error("Error loading textures\n", data);
+		ft_putstr("Error loading textures\n");
+		close_window(data);
 	}
 }
 

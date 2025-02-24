@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
 void	free_map(char **map, int rows)
 {
@@ -44,17 +43,14 @@ void	free_image(t_data *data)
 		mlx_destroy_image(data->mlx, data->player_img);
 }
 
-int	close_window(int keycode, t_data *data)
+int	close_window(t_data *data)
 {
-	if (keycode == 65307)
-	{
-		free_image(data);
-		mlx_destroy_window(data->mlx, data->window);
-		mlx_destroy_display(data->mlx);
-		free(data->mlx);
-		free_map(data->map, data->rows);
-		exit(0);
-	}
+	mlx_destroy_window(data->mlx, data->window);
+	free_image(data);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
+	free_map(data->map, data->rows);
+	exit(0);
 	return (0);
 }
 
@@ -64,6 +60,7 @@ int	close_x_window(void *ptr)
 
 	data = (t_data *)ptr;
 	mlx_destroy_window(data->mlx, data->window);
+	free_image(data);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	free_map(data->map, data->rows);

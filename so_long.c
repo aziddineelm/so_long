@@ -36,6 +36,8 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (1);
 	data.filename = av[1];
+	data.width = 0;
+	data.height = 0;
 	data.columns = 0;
 	check_map(&data);
 	data.mlx = mlx_init();
@@ -43,8 +45,6 @@ int	main(int ac, char **av)
 		free_error("Error\nMLX initialization failed\n", &data);
 	data.window = mlx_new_window(data.mlx, data.columns * 32, data.rows * 32,
 			"so_long");
-	data.width = 0;
-	data.height = 0;
 	load_image(&data);
 	render_image(&data);
 	mlx_hook(data.window, 2, 1L << 0, movement, &data);
