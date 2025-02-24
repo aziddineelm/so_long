@@ -66,5 +66,7 @@ void	render_image(t_data *data);
 void	load_image(t_data *data);
 int		movement(int keycode, t_data *data);
 void	free_image(t_data *data);
+char	*ft_itoa(int n);
+void	put_moves(t_data *data);
 
 #endif

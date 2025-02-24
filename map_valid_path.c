@@ -58,7 +58,8 @@ int	reachable(char **map, int rows, int columns)
 
 void	flood_fill(char **map, int x, int y)
 {
-	if (x < 0 || y < 0 || !map[x] || map[x][y] == '1' || map[x][y] == 'V' || map[x][y] == 'X')
+	if (x < 0 || y < 0 || !map[x] || map[x][y] == '1' || map[x][y] == 'V'
+		|| map[x][y] == 'X')
 		return ;
 	map[x][y] = 'V';
 	flood_fill(map, x + 1, y);

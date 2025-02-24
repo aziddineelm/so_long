@@ -36,8 +36,8 @@ void	load_image(t_data *data)
 
 void	render_image(t_data *data)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 
 	y = -1;
 	while (++y < data->rows)

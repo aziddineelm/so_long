@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static void	handle_exit_move(t_data *data, int new_x, int new_y, char curr)
+void	handle_exit_move(t_data *data, int new_x, int new_y, char curr)
 {
 	if (data->collectible == 0)
 	{
@@ -25,7 +25,7 @@ static void	handle_exit_move(t_data *data, int new_x, int new_y, char curr)
 	data->player_y = new_y;
 }
 
-static void	handle_normal_move(t_data *data, int new_x, int new_y, char curr)
+void	handle_normal_move(t_data *data, int new_x, int new_y, char curr)
 {
 	char	next;
 
@@ -41,7 +41,7 @@ static void	handle_normal_move(t_data *data, int new_x, int new_y, char curr)
 	data->map[new_x][new_y] = 'P';
 }
 
-static void	handle_move_outcome(t_data *data, int new_x, int new_y)
+void	handle_move_outcome(t_data *data, int new_x, int new_y)
 {
 	char	next;
 	char	curr;
@@ -59,7 +59,7 @@ static void	handle_move_outcome(t_data *data, int new_x, int new_y)
 		handle_normal_move(data, new_x, new_y, curr);
 }
 
-static void	process_move(t_data *data, int dx, int dy)
+void	process_move(t_data *data, int dx, int dy)
 {
 	int	new_x;
 	int	new_y;
@@ -67,7 +67,10 @@ static void	process_move(t_data *data, int dx, int dy)
 	new_x = data->player_x + dx;
 	new_y = data->player_y + dy;
 	if (data->map[new_x][new_y] != '1')
+	{
+		data->moves_count++;
 		handle_move_outcome(data, new_x, new_y);
+	}
 }
 
 int	movement(int keycode, t_data *data)
@@ -83,5 +86,6 @@ int	movement(int keycode, t_data *data)
 	else if (keycode == 65363 || keycode == 100)
 		process_move(data, 0, 1);
 	render_image(data);
+	put_moves(data);
 	return (0);
 }

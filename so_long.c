@@ -17,6 +17,8 @@ void	check_map(t_data *data)
 	if (name_check(data->filename))
 		exit_error("Error!\nPlease Enter a valid map with \".ber\"\n");
 	data->map = read_map(data);
+	if (data->rows > 31 || data->columns > 60)
+		free_error("Error\nmap too long", data);
 	if (!data->map)
 		free_error(("Error\nMap could not be read\n"), data);
 	if (is_rectangle(data))
@@ -29,6 +31,16 @@ void	check_map(t_data *data)
 		free_error(("Error\nNo valid path!\n"), data);
 }
 
+void	put_moves(t_data *data)
+{
+	char	*moves_str;
+
+	moves_str = ft_itoa(data->moves_count);
+	mlx_string_put(data->mlx, data->window, 10, 20, 0xEE00FF, "Moves: ");
+	mlx_string_put(data->mlx, data->window, 70, 20, 0xEE00FF, moves_str);
+	free(moves_str);
+}
+
 int	main(int ac, char **av)
 {
 	t_data	data;
@@ -39,12 +51,14 @@ int	main(int ac, char **av)
 	data.width = 0;
 	data.height = 0;
 	data.columns = 0;
+	data.moves_count = 0;
 	check_map(&data);
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		free_error("Error\nMLX initialization failed\n", &data);
 	data.window = mlx_new_window(data.mlx, data.columns * 32, data.rows * 32,
 			"so_long");
+	put_moves(&data);
 	load_image(&data);
 	render_image(&data);
 	mlx_hook(data.window, 2, 1L << 0, movement, &data);
