@@ -36,8 +36,8 @@ void	put_moves(t_data *data)
 	char	*moves_str;
 
 	moves_str = ft_itoa(data->moves_count);
-	mlx_string_put(data->mlx, data->window, 10, 20, 0xEE00FF, "Moves: ");
-	mlx_string_put(data->mlx, data->window, 70, 20, 0xEE00FF, moves_str);
+	mlx_string_put(data->mlx, data->window, 10, 20, 0x000000, "Moves: ");
+	mlx_string_put(data->mlx, data->window, 70, 20, 0x000000, moves_str);
 	free(moves_str);
 }
 
@@ -54,6 +54,8 @@ int	main(int ac, char **av)
 	data.moves_count = 0;
 	check_map(&data);
 	data.mlx = mlx_init();
+	if (!data.mlx)
+		free_error("Error\nMLX initialization failed\n", &data);
 	data.window = mlx_new_window(data.mlx, data.columns * 32, data.rows * 32, "so_long");
 	put_moves(&data);
 	load_image(&data);

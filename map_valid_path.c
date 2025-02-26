@@ -68,33 +68,25 @@ void	flood_fill(char **map, int x, int y)
 	flood_fill(map, x, y - 1);
 }
 
-char	**map_copy(char **map, int rows, int columns)
+char	**map_copy(char **map, int rows)
 {
 	char	**new_map;
 	int		i;
-	int		j;
 
 	new_map = (char **)malloc(sizeof(char *) * (rows + 1));
 	if (!new_map)
-		return (NULL);
+		exit_error("Error\nMemory allocation failed for map copy!");
 	i = 0;
 	while (i < rows)
 	{
-		new_map[i] = (char *)malloc(sizeof(char) * (columns + 1));
+		new_map[i] = ft_strdup(map[i]);
 		if (!new_map[i])
 		{
-			while (--i >= 0)
+			while (i-- > 0)
 				free(new_map[i]);
 			free(new_map);
-			return (NULL);
+			exit_error("Error\nMemory allocation failed for map copy!");
 		}
-		j = 0;
-		while (j < columns)
-		{
-			new_map[i][j] = map[i][j];
-			j++;
-		}
-		new_map[i][j] = '\0';
 		i++;
 	}
 	new_map[rows] = NULL;
@@ -106,7 +98,7 @@ int	has_valid_path(t_data *data)
 	char	**copy;
 
 	find_player(data);
-	copy = map_copy(data->map, data->rows, data->columns);
+	copy = map_copy(data->map, data->rows);
 	if (!copy)
 		return (1);
 	flood_fill(copy, data->player_x, data->player_y);

@@ -65,8 +65,9 @@ int	surrounded_by_walls(t_data *data)
 
 int	count_elements(t_data *data)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	cell;
 
 	data->collectible = 0;
 	data->player = 0;
@@ -77,14 +78,14 @@ int	count_elements(t_data *data)
 		j = -1;
 		while (++j < data->columns)
 		{
-			if (data->map[i][j] == 'C')
+			cell = data->map[i][j];
+			if (cell == 'C')
 				data->collectible++;
-			else if (data->map[i][j] == 'P')
+			else if (cell == 'P')
 				data->player++;
-			else if (data->map[i][j] == 'E')
+			else if (cell == 'E')
 				data->exit++;
-			else if (data->map[i][j] != '0' && data->map[i][j] != '1'
-				&& data->map[i][j] != 'X')
+			else if (cell != '0' && cell != '1' && cell != 'X')
 				free_error("Error\nMap contains invalid characters!", data);
 		}
 	}
