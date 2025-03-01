@@ -18,7 +18,7 @@ int	update_enemy_game(t_data *data)
 
 	put_moves(data);
 	counter++;
-	if (counter % 50000 == 0)
+	if (counter % 5000 == 0)
 	{
 		data->enemy_frame = (data->enemy_frame + 1) % 2;
 		render_image(data);
@@ -50,8 +50,10 @@ void	put_moves(t_data *data)
 	char	*moves_str;
 
 	moves_str = ft_itoa(data->moves_count);
-	mlx_string_put(data->mlx, data->window, 10, 20, 0xFFFFFF, "Moves: ");
-	mlx_string_put(data->mlx, data->window, 70, 20, 0xFFFFFF, moves_str);
+	mlx_set_font(data->mlx, data->window, "rk24");
+	mlx_do_sync(data->mlx);
+	mlx_string_put(data->mlx, data->window, 10, (data->rows + 1) * 31.1, 0x000000, "Moves: ");
+	mlx_string_put(data->mlx, data->window, 100, (data->rows + 1) * 31.1, 0x000000, moves_str);
 	free(moves_str);
 }
 
@@ -71,7 +73,7 @@ int	main(int ac, char **av)
 	data.enemy_frame = 0;
 	check_map(&data);
 	data.mlx = mlx_init();
-	data.window = mlx_new_window(data.mlx, data.columns * 32, data.rows * 32,
+	data.window = mlx_new_window(data.mlx, data.columns * 32, (data.rows + 1) * 32,
 			"so_long");
 	load_image(&data);
 	render_image(&data);

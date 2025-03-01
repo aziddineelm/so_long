@@ -76,9 +76,7 @@ void	load_image(t_data *data)
 
 void	render_image_norm(t_data *data, int y)
 {
-	int	x;
-
-	x = 0;
+	int (x) = 0;
 	while (x < data->columns)
 	{
 		if (data->map[y][x] == '1')
@@ -96,6 +94,7 @@ void	render_image_norm(t_data *data, int y)
 		else if (data->map[y][x] == 'X')
 			mlx_put_image_to_window(data->mlx, data->window,
 				data->enemy_img[data->enemy_frame], x * 32, y * 32);
+		mlx_put_image_to_window(data->mlx, data->window, data->floor_img, x * 32, (data->rows) * 32);
 		x++;
 	}
 }
