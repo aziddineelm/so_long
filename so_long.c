@@ -12,6 +12,20 @@
 
 #include "so_long.h"
 
+int	update_enemy_game(t_data *data)
+{
+	static int	counter = 0;
+
+	put_moves(data);
+	counter++;
+	if (counter % 50000 == 0)
+	{
+		data->enemy_frame = (data->enemy_frame + 1) % 2;
+		render_image(data);
+	}
+	return (0);
+}
+
 void	check_map(t_data *data)
 {
 	if (name_check(data->filename))
@@ -36,8 +50,8 @@ void	put_moves(t_data *data)
 	char	*moves_str;
 
 	moves_str = ft_itoa(data->moves_count);
-	mlx_string_put(data->mlx, data->window, 10, 20, 0x000000, "Moves: ");
-	mlx_string_put(data->mlx, data->window, 70, 20, 0x000000, moves_str);
+	mlx_string_put(data->mlx, data->window, 10, 20, 0xFFFFFF, "Moves: ");
+	mlx_string_put(data->mlx, data->window, 70, 20, 0xFFFFFF, moves_str);
 	free(moves_str);
 }
 
@@ -52,17 +66,18 @@ int	main(int ac, char **av)
 	data.height = 0;
 	data.columns = 0;
 	data.moves_count = 0;
+	data.player_dir = 1;
+	data.player_frame = 0;
+	data.enemy_frame = 0;
 	check_map(&data);
 	data.mlx = mlx_init();
-	if (!data.mlx)
-		free_error("Error\nMLX initialization failed\n", &data);
 	data.window = mlx_new_window(data.mlx, data.columns * 32, data.rows * 32,
 			"so_long");
-	put_moves(&data);
 	load_image(&data);
 	render_image(&data);
 	mlx_hook(data.window, 2, 1, movement, &data);
 	mlx_hook(data.window, 17, 0, close_x_window, &data);
+	mlx_loop_hook(data.mlx, (int (*)(void *))update_enemy_game, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }

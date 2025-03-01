@@ -78,14 +78,29 @@ int	movement(int keycode, t_data *data)
 	if (keycode == 65307)
 		close_window(data);
 	else if (keycode == 65362 || keycode == 119)
+	{
+		data->player_dir = 0;
 		process_move(data, -1, 0);
+		data->player_frame = (data->player_frame + 1) % 2;
+	}
 	else if (keycode == 65364 || keycode == 115)
+	{
+		data->player_dir = 1;
 		process_move(data, 1, 0);
+		data->player_frame = (data->player_frame + 1) % 2;
+	}
 	else if (keycode == 65361 || keycode == 97)
+	{
+		data->player_dir = 2;
 		process_move(data, 0, -1);
+		data->player_frame = (data->player_frame + 1) % 2;
+	}
 	else if (keycode == 65363 || keycode == 100)
+	{
+		data->player_dir = 3;
 		process_move(data, 0, 1);
+		data->player_frame = (data->player_frame + 1) % 2;
+	}
 	render_image(data);
-	put_moves(data);
 	return (0);
 }

@@ -34,13 +34,19 @@ typedef struct s_data
 	int		player_y;
 	int		width;
 	int		height;
-	void	*player_img;
+	void	*player_up[2];
+	void	*player_down[2];
+	void	*player_left[2];
+	void	*player_right[2];
+	void	*enemy_img[2];
 	void	*floor_img;
 	void	*coin_img;
 	void	*wall_img;
-	void	*enemy_img;
 	void	*exit_img;
 	int		moves_count;
+	int		player_dir;
+	int		player_frame;
+	int		enemy_frame;
 }			t_data;
 
 void	print_map(char **map);

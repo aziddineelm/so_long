@@ -29,18 +29,34 @@ void	free_map(char **map, int rows)
 
 void	free_image(t_data *data)
 {
+	if (data->player_up[0])
+		mlx_destroy_image(data->mlx, data->player_up[0]);
+	if (data->player_up[1])
+		mlx_destroy_image(data->mlx, data->player_up[1]);
+	if (data->player_down[0])
+		mlx_destroy_image(data->mlx, data->player_down[0]);
+	if (data->player_down[1])
+		mlx_destroy_image(data->mlx, data->player_down[1]);
+	if (data->player_left[0])
+		mlx_destroy_image(data->mlx, data->player_left[0]);
+	if (data->player_left[1])
+		mlx_destroy_image(data->mlx, data->player_left[1]);
+	if (data->player_right[0])
+		mlx_destroy_image(data->mlx, data->player_right[0]);
+	if (data->player_right[1])
+		mlx_destroy_image(data->mlx, data->player_right[1]);
+	if (data->enemy_img[0])
+		mlx_destroy_image(data->mlx, data->enemy_img[0]);
+	if (data->enemy_img[1])
+		mlx_destroy_image(data->mlx, data->enemy_img[1]);
 	if (data->coin_img)
 		mlx_destroy_image(data->mlx, data->coin_img);
 	if (data->exit_img)
 		mlx_destroy_image(data->mlx, data->exit_img);
-	if (data->wall_img)
-		mlx_destroy_image(data->mlx, data->wall_img);
-	if (data->enemy_img)
-		mlx_destroy_image(data->mlx, data->enemy_img);
 	if (data->floor_img)
 		mlx_destroy_image(data->mlx, data->floor_img);
-	if (data->player_img)
-		mlx_destroy_image(data->mlx, data->player_img);
+	if (data->wall_img)
+		mlx_destroy_image(data->mlx, data->wall_img);
 }
 
 int	close_window(t_data *data)
