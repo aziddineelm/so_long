@@ -56,7 +56,8 @@ int	main(int ac, char **av)
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		free_error("Error\nMLX initialization failed\n", &data);
-	data.window = mlx_new_window(data.mlx, data.columns * 32, data.rows * 32, "so_long");
+	data.window = mlx_new_window(data.mlx, data.columns * 32, data.rows * 32,
+			"so_long");
 	put_moves(&data);
 	load_image(&data);
 	render_image(&data);

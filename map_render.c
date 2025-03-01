@@ -18,7 +18,7 @@ void	load_image(t_data *data)
 			&data->width, &data->height);
 	data->coin_img = mlx_xpm_file_to_image(data->mlx, "sprites/coin.xpm",
 			&data->width, &data->height);
-	data->enemy_img = mlx_xpm_file_to_image(data->mlx, "sprites/enemyy.xpm",
+	data->enemy_img = mlx_xpm_file_to_image(data->mlx, "sprites/enemy.xpm",
 			&data->width, &data->height);
 	data->wall_img = mlx_xpm_file_to_image(data->mlx, "sprites/wall.xpm",
 			&data->width, &data->height);
@@ -34,33 +34,41 @@ void	load_image(t_data *data)
 	}
 }
 
+void	render_image_norm(t_data *data, int y)
+{
+	int	x;
+
+	x = 0;
+	while (x < data->columns)
+	{
+		if (data->map[y][x] == '1')
+			mlx_put_image_to_window(data->mlx, data->window, data->wall_img, x
+				* 32, y * 32);
+		else if (data->map[y][x] == '0')
+			mlx_put_image_to_window(data->mlx, data->window, data->floor_img, x
+				* 32, y * 32);
+		else if (data->map[y][x] == 'C')
+			mlx_put_image_to_window(data->mlx, data->window, data->coin_img, x
+				* 32, y * 32);
+		else if (data->map[y][x] == 'E')
+			mlx_put_image_to_window(data->mlx, data->window, data->exit_img, x
+				* 32, y * 32);
+		else if (data->map[y][x] == 'X')
+			mlx_put_image_to_window(data->mlx, data->window, data->enemy_img, x
+				* 32, y * 32);
+		x++;
+	}
+}
+
 void	render_image(t_data *data)
 {
-	int		x;
-	int		y;
+	int	y;
 
-	y = -1;
-	while (++y < data->rows)
+	y = 0;
+	while (y < data->rows)
 	{
-		x = -1;
-		while (++x < data->columns)
-		{
-			if (data->map[y][x] == '1')
-				mlx_put_image_to_window(data->mlx, data->window, data->wall_img,
-					x * 32, y * 32);
-			else if (data->map[y][x] == '0')
-				mlx_put_image_to_window(data->mlx, data->window,
-					data->floor_img, x * 32, y * 32);
-			else if (data->map[y][x] == 'C')
-				mlx_put_image_to_window(data->mlx, data->window, data->coin_img,
-					x * 32, y * 32);
-			else if (data->map[y][x] == 'E')
-				mlx_put_image_to_window(data->mlx, data->window, data->exit_img,
-					x * 32, y * 32);
-			else if (data->map[y][x] == 'X')
-				mlx_put_image_to_window(data->mlx, data->window,
-					data->enemy_img, x * 32, y * 32);
-		}
+		render_image_norm(data, y);
+		y++;
 	}
 	mlx_put_image_to_window(data->mlx, data->window, data->player_img,
 		data->player_y * 32, data->player_x * 32);
