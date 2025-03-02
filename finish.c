@@ -6,7 +6,7 @@
 /*   By: ael-mans <ael-mans@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 15:31:42 by ael-mans          #+#    #+#             */
-/*   Updated: 2025/03/02 15:46:19 by ael-mans         ###   ########.fr       */
+/*   Updated: 2025/03/02 16:06:30 by ael-mans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	ft_victory(t_data *data)
 {
+	char	*moves_str;
+
+	moves_str = ft_itoa(data->moves_count);
+	ft_putstr(CYAN"Moves: "RESET);
+	ft_putstr(moves_str);
 	ft_putstr(GREEN "\n\
 ██████████████████████████████████████████████████████████████████\n\
 ██                                                              ██\n\
@@ -30,6 +35,11 @@ void	ft_victory(t_data *data)
 
 void	ft_lose(t_data *data)
 {
+	char	*moves_str;
+
+	moves_str = ft_itoa(data->moves_count);
+	ft_putstr(CYAN"Moves: "RESET);
+	ft_putstr(moves_str);
 	ft_putstr(RED "\n\
 █████████████████████████████████████████████████████████████████████\n\
 ██                                                                 ██\n\
@@ -40,6 +50,6 @@ void	ft_lose(t_data *data)
 ██     ██     ██████    ████       ██████  ██████  ██████  ██████  ██\n\
 ██                                                                 ██\n\
 █████████████████████████████████████████████████████████████████████\n\n\
-");
+"RESET);
 	close_window(data);
 }
