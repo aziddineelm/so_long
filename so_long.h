@@ -6,7 +6,7 @@
 /*   By: ael-mans <ael-mans@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:52:31 by ael-mans          #+#    #+#             */
-/*   Updated: 2025/02/22 13:03:07 by ael-mans         ###   ########.fr       */ /*                                                                            */
+/*   Updated: 2025/03/02 15:48:12 by ael-mans         ###   ########.fr       */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
@@ -18,6 +18,9 @@
 # include <unistd.h>
 
 # define BUFFER_SIZE 10
+# define GREEN				"\033[0;32m"
+# define RED 				"\033[1;31m"
+# define RESET 				"\033[0m"
 
 typedef struct s_data
 {
@@ -74,5 +77,7 @@ int		movement(int keycode, t_data *data);
 void	free_image(t_data *data);
 char	*ft_itoa(int n);
 void	put_moves(t_data *data);
+void	ft_victory(t_data *data);
+void	ft_lose(t_data *data);
 
 #endif

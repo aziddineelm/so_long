@@ -6,7 +6,7 @@
 /*   By: ael-mans <ael-mans@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:52:55 by ael-mans          #+#    #+#             */
-/*   Updated: 2025/02/22 13:01:52 by ael-mans         ###   ########.fr       */
+/*   Updated: 2025/03/02 15:48:46 by ael-mans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	put_moves(t_data *data)
 
 	moves_str = ft_itoa(data->moves_count);
 	mlx_set_font(data->mlx, data->window, "rk24");
-	// mlx_do_sync(data->mlx);
+	mlx_do_sync(data->mlx);
 	mlx_string_put(data->mlx, data->window, 10, (data->rows + 1) * 31.7,
 		0x000000, "Moves: ");
 	mlx_string_put(data->mlx, data->window, 100, (data->rows + 1) * 31.7,
