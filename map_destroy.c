@@ -27,7 +27,7 @@ void	free_map(char **map, int rows)
 	free(map);
 }
 
-void	free_image(t_data *data)
+void	free_player_image(t_data *data)
 {
 	if (data->player_up[0])
 		mlx_destroy_image(data->mlx, data->player_up[0]);
@@ -45,6 +45,11 @@ void	free_image(t_data *data)
 		mlx_destroy_image(data->mlx, data->player_right[0]);
 	if (data->player_right[1])
 		mlx_destroy_image(data->mlx, data->player_right[1]);
+}
+
+void	free_image(t_data *data)
+{
+	free_player_image(data);
 	if (data->enemy_img[0])
 		mlx_destroy_image(data->mlx, data->enemy_img[0]);
 	if (data->enemy_img[1])

@@ -12,19 +12,6 @@
 
 #include "so_long.h"
 
-void	handle_exit_move(t_data *data, int new_x, int new_y, char curr)
-{
-	if (data->collectible == 0)
-	{
-		ft_putstr("Congratulations! You won!\n");
-		close_window(data);
-	}
-	if (curr != 'E')
-		data->map[data->player_x][data->player_y] = '0';
-	data->player_x = new_x;
-	data->player_y = new_y;
-}
-
 void	handle_normal_move(t_data *data, int new_x, int new_y, char curr)
 {
 	char	next;
@@ -54,7 +41,17 @@ void	handle_move_outcome(t_data *data, int new_x, int new_y)
 		close_window(data);
 	}
 	else if (next == 'E')
-		handle_exit_move(data, new_x, new_y, curr);
+	{
+		if (data->collectible == 0)
+		{
+			ft_putstr("Congratulations! You won!\n");
+			close_window(data);
+		}
+		if (curr != 'E')
+			data->map[data->player_x][data->player_y] = '0';
+		data->player_x = new_x;
+		data->player_y = new_y;
+	}
 	else
 		handle_normal_move(data, new_x, new_y, curr);
 }
@@ -73,11 +70,9 @@ void	process_move(t_data *data, int dx, int dy)
 	}
 }
 
-int	movement(int keycode, t_data *data)
+void	movement_handle(int keycode, t_data *data)
 {
-	if (keycode == 65307)
-		close_window(data);
-	else if (keycode == 65362 || keycode == 119)
+	if (keycode == 65362 || keycode == 119)
 	{
 		data->player_dir = 0;
 		process_move(data, -1, 0);
@@ -101,6 +96,13 @@ int	movement(int keycode, t_data *data)
 		process_move(data, 0, 1);
 		data->player_frame = (data->player_frame + 1) % 2;
 	}
+}
+
+int	movement(int keycode, t_data *data)
+{
+	if (keycode == 65307)
+		close_window(data);
+	movement_handle(keycode, data);
 	render_image(data);
 	return (0);
 }
