@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
 void	load_player_image(t_data *data)
 {
