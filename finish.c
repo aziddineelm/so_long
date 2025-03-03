@@ -30,6 +30,7 @@ void	ft_victory(t_data *data)
 ██                                                              ██\n\
 ██████████████████████████████████████████████████████████████████\n\n\
 " RESET);
+	free(moves_str);
 	close_window(data);
 }
 
@@ -51,5 +52,6 @@ void	ft_lose(t_data *data)
 ██                                                                 ██\n\
 █████████████████████████████████████████████████████████████████████\n\n\
 "RESET);
+	free(moves_str);
 	close_window(data);
 }

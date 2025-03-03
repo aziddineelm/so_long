@@ -103,7 +103,10 @@ int	has_valid_path(t_data *data)
 		return (1);
 	flood_fill(copy, data->player_x, data->player_y);
 	if (reachable(copy, data->rows, data->columns))
+	{
+		free_map(copy, data->rows);
 		free_error("Error\nNo valid path!\n", data);
+	}
 	free_map(copy, data->rows);
 	return (0);
 }
