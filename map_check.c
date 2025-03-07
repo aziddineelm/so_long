@@ -11,19 +11,16 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <libgen.h>
 
-int	name_check(char *path)
+int	name_check(char *filename)
 {
-	char	*filename;
 	size_t	len;
 
-	filename = basename(path);
 	len = ft_strlen(filename);
-	if (len < 5 || ft_strcmp(filename + len - 4, ".ber") != 0)
-	{
+	if (ft_strcmp(filename + len - 4, ".ber") != 0)
+		return (1);
+	if (len < 5 || filename[len - 5] == '/')
 		exit_error("Error!\nPlease Enter at least 1 character with \".ber\"");
-	}
 	return (0);
 }
 
