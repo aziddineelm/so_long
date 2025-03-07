@@ -17,7 +17,7 @@ void	ft_victory(t_data *data)
 	char	*moves_str;
 
 	moves_str = ft_itoa(data->moves_count);
-	ft_putstr(CYAN"Moves: "RESET);
+	ft_putstr(CYAN "Moves: " RESET);
 	ft_putstr(moves_str);
 	ft_putstr(GREEN "\n\
 ██████████████████████████████████████████████████████████████████\n\
@@ -39,7 +39,7 @@ void	ft_lose(t_data *data)
 	char	*moves_str;
 
 	moves_str = ft_itoa(data->moves_count);
-	ft_putstr(CYAN"Moves: "RESET);
+	ft_putstr(CYAN "Moves: " RESET);
 	ft_putstr(moves_str);
 	ft_putstr(RED "\n\
 █████████████████████████████████████████████████████████████████████\n\
@@ -51,7 +51,7 @@ void	ft_lose(t_data *data)
 ██     ██     ██████    ████       ██████  ██████  ██████  ██████  ██\n\
 ██                                                                 ██\n\
 █████████████████████████████████████████████████████████████████████\n\n\
-"RESET);
+" RESET);
 	free(moves_str);
 	close_window(data);
 }
