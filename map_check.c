@@ -97,6 +97,9 @@ int	has_required_element(t_data *data)
 	if (count_elements(data))
 		return (1);
 	if (data->exit != 1 || data->player != 1 || data->collectible < 1)
+	{
+		free_map(data->map, data->rows);
 		exit_error("Error\nInvalid element count");
+	}
 	return (0);
 }

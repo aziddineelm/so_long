@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-mans <ael-mans@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/09 07:55:21 by ael-mans          #+#    #+#             */
-/*   Updated: 2025/03/09 07:55:27 by ael-mans         ###   ########.fr       */
+/*   Created: 2025/03/09 06:34:53 by ael-mans          #+#    #+#             */
+/*   Updated: 2025/03/09 06:35:00 by ael-mans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <libgen.h>
 
 # define BUFFER_SIZE 10
 # define GREEN				"\033[0;32m"
