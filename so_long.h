@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include <libgen.h>
 
 # define BUFFER_SIZE 10
 # define GREEN				"\033[0;32m"
