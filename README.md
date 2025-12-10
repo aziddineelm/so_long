@@ -218,7 +218,3 @@ Test your game with various map configurations:
 ## 👤 Author
 
 **aziddineelm** - [GitHub Profile](https://github.com/aziddineelm)
-
-## 👤 Author
-
-**aziddineelm** - [GitHub Profile](https://github.com/aziddineelm)
